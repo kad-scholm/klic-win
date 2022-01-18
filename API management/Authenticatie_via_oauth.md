@@ -1,4 +1,4 @@
-﻿# Authenticatie via OAuth voor de KLIC API's
+# Authenticatie via OAuth voor de KLIC API's
 
 De KLIC REST API's zijn beveiligd middels de [OAuth 2.0](https://oauth.net/2/) specificatie.
 Dit document biedt een handleiding voor het aansluiten op de KLIC API's met OAuth.
@@ -59,8 +59,13 @@ Deze klic.ntd.*-scopes mogen niet gebruikt worden bij requests naar de productie
 #### Authorization token opvragen
 Rechten voor gebruik van de API endpoints zijn gekoppeld aan mijn kadaster accounts. De gebruiker zal de client applicatie hiervoor éénmalig toestemming moeten geven door in te loggen via mijn kadaster.  
 Ga naar: https://authorization.kadaster.nl/auth/oauth/v2/authorize?response_type=code&client_id=[client_id]&client_secret=[client_secret]&redirect_uri=[redirect_uri]&scope=[scope]  
+Als eerste krijgt de gebruiker de keuze tussen inloggen met een kadaster account of met eherkenning
 
-<img src="images/login.png" />
+<img src="images/loginkeuze.png" />
+
+Afhankelijk van de gekozen methode verschijnt daarna één van deze 2 inlogschermen.  
+![Kadaster login scherm](images/logink.png)   ![Eherkenning login scherm](images/logineh.png)
+
 
 Na het inloggen verschijnt onderstaand scherm:
 
@@ -69,7 +74,7 @@ Na het inloggen verschijnt onderstaand scherm:
 Klik op **GRANT** als de gegevens kloppen.
 
 
-De gebruiker wordt daarna doorgestuurd naar de redirect_uri. Uit de request parameters kan de authorization code gehaald worden.
+De gebruiker wordt daarna doorgestuurd naar de redirect_uri. Uit de request parameters kan door de client applicatie de authorization code gehaald worden.
 Bijvoorbeeld:    
 http://localhost:14057/authorize/?code=42283687-7c09-4018-8a7a-9e9533366dbb 
 Deze code is 30 seconden geldig, haal daarom direct daarna een access code op.  
